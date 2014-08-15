@@ -16,18 +16,6 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-//    @Override
-//    public CV getCVById(Long id) {
-//        return cvRepository.findOne(id);
-//    }
-//
-//    @Transactional
-//    @Override
-//    public CV getCVByIdWithCategories(Long id) {
-//        CV cv = cvRepository.findOne(id);
-//        Hibernate.initialize(cv.getCategories());
-//        return cv;
-//    }
 
     @Override
     public User getUserById(Long id) {
@@ -36,5 +24,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User saveUser(User user) {return  userRepository.save(user);}
+
+    @Override
+    public Iterable<User> findAllUsers() { return userRepository.findAll(); }
+
+
 
 }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>LuckyNumber</title>
+    <link href="/resources/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css"/>
+
+    <script src="/resources/js/jquery-2.1.0.min.js"></script>
+    <script src="/resources/js/jquery-validate.min.js"></script>
+    <script src="/resources/js/validation.js"></script>
+</head>
+<style>
+    @import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
+    @import url(http://fonts.googleapis.com/css?family=Russo+One);
+</style>
+<body>
+
+<div class="container" style="min-width: 1000px">
+    <h1>Пользователь</h1>
+
+    <div class="row">
+        <form action="#" th:action="@{/user/update}" th:object="${userVO}" method="post" class="form-3 reg"
+              id="cvform" role="form">
+            <input type="hidden" th:field="*{id}"/>
+            <p class="clearfix">
+                <label for="fio">Имя: </label>
+                <input type="text" id="fio" th:field="*{fio}"/>
+            </p>
+
+            <p class="clearfix">
+                <label for="bdate">Дата рождения:</label>
+                <input type="date" id="bdate" th:field="*{bdate}" data-date-format="dd-mm-yyyy"/>
+            </p>
+
+            <p class="clearfix">
+                <label for="first">Первое число:</label>
+                <input type="number" id="first" th:field="*{first}"/>
+            </p>
+
+            <p class="clearfix">
+                <label for="second">Второе число:</label>
+                <input type="number" id="second" th:field="*{second}"/>
+            </p>
+
+            <p class="clearfix">
+                <label for="third">Третье число:</label>
+                <input type="number" id="third"  th:field="*{third}"/>
+            </p>
+            <p class="clearfix">
+                <input type="submit" name="submit" value="Изменить"/>
+            </p>
+        </form>
+    </div>
+</div>
+</body>
+</html>

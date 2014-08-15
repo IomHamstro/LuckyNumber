@@ -1,36 +1,22 @@
-package model;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.*;
-import java.util.Date;
+package viewobject;
 
 /**
- * Created by Ольга on 06.08.2014.
+ * Created by Ольга on 12.08.2014.
  */
-@Entity
-@Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(generator="increment")
-    @GenericGenerator(name="increment", strategy = "increment")
+public class UserVO {
     private Long id;
-
     private String fio;
-    @Temporal(TemporalType.DATE )
-    @DateTimeFormat(pattern="dd-MMM-YYYY")
-    private Date bdate;
+    private String bdate;
     private Integer first;
     private Integer second;
     private Integer third;
 
     private Integer luckyNumber;
 
-    public User() {
+    public UserVO() {
     }
 
-    public User(String fio, Date bdate, Integer first, Integer second, Integer third) {
+    public UserVO(String fio, String bdate, Integer first, Integer second, Integer third) {
         this.fio = fio;
         this.bdate = bdate;
         this.first = first;
@@ -54,11 +40,11 @@ public class User {
         this.fio = fio;
     }
 
-    public Date getBdate() {
+    public String getBdate() {
         return bdate;
     }
 
-    public void setBdate(Date bdate) {
+    public void setBdate(String bdate) {
         this.bdate = bdate;
     }
 

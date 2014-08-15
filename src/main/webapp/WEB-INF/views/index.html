@@ -3,27 +3,105 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>LN</title>
+    <title>Lucky Number</title>
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/resources/css/signin.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css"/>
+
+    <script src="/resources/js/jquery-2.1.0.min.js"></script>
+    <script src="/resources/js/jquery-validate.min.js"></script>
+    <script src="/resources/js/validation.js"></script>
+
+    <script type="text/javascript" language="javascript">
+        $(function() {
+            $("#send").click(function () {
+                console.log("Data is sended");
+                var fio = $("#fio").val();
+                var bdate = $("#bdate").val();
+                console.log(bdate);
+                var first = $("#first").val();
+                var second = $("#second").val();
+                var third = $("#third").val();
+
+                $.ajax({
+                    type: "GET",
+                    url: "/save",
+                    data: {fio: fio, bdate: bdate, first: first, second: second, third: third}
+                }).success(function (data) {
+                    console.log("Data = " + data);
+                    $(".result").removeClass("hidden");
+                    $("#results").empty();
+                    $("#results").html(data);
+                }).error(function () {
+                    alert("Произошла ошибка");
+                })
+            })
+        });
+    </script>
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
+        @import url(http://fonts.googleapis.com/css?family=Russo+One);
+    </style>
 </head>
 <body>
+<form class="form-3 login" th:action="@{/login}" th:object="${admin}" method="post">
+    <div class="error" th:if="${noUser != null}">Неверный логин/пароль</div>
+    <div class="clearfix">
+        <div style="float: left;">
+            <label for="login">Логин</label>
+            <input type="text" name="login" id="login" th:field="*{login}" placeholder="Ваш логин"/>
+        </div>
+        <div style="float: left;">
+            <label for="password" >Пароль</label>
+            <input type="password" name="password" id="password" th:field="*{password}" placeholder="Пароль"/>
+        </div>
+        <div style="float: left;">
+            <input type="submit" name="submit" value="Войти"/>
+        </div>
+    </div>
 
-<div class="container">
 
-    <!--<form class="form-signin" th:action="@{/login}" method="post">-->
-        <!--<h2 class="form-signin-heading">Авторизация</h2>-->
-        <!--<div th:if="${param.error}">-->
-            <!--Неверное имя пользователя или пароль-->
-        <!--</div>-->
-        <!--<div th:if="${param.logout}">-->
-            <!--Вы успешно вышли из системы-->
-        <!--</div>-->
-        <!--<input type="email" name="username" class="form-control" placeholder="Email" />-->
-        <!--<input type="password" name="password" class="form-control" placeholder="Пароль"/>-->
-        <!--<button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>-->
-    <!--</form>-->
-    <a href="/form">Узнать число</a>
+
+</form>
+<div class="container" style="min-width: 1000px">
+    <h1>Узнай своё <br/>счастливое число</h1>
+
+    <form action="#" class="form-3 reg" id="form" method="post">
+
+        <p class="clearfix">
+            <label for="fio">Имя: </label>
+            <input type="text" id="fio" name="fio" placeholder="ФИО"/>
+        </p>
+
+        <p class="clearfix">
+            <label for="bdate">Дата рождения:</label>
+            <input type="date" id="bdate" name="bdate" data-date-format="dd-mm-yyyy"/>
+        </p>
+
+        <p class="clearfix">
+            <label for="first">Первое число:</label>
+            <input type="number" id="first" name="first"/>
+        </p>
+
+        <p class="clearfix">
+            <label for="second">Второе число:</label>
+            <input type="number" id="second" name="third"/>
+        </p>
+
+        <p class="clearfix">
+            <label for="third">Третье число:</label>
+            <input type="number" id="third" name="third"/>
+        </p>
+
+    </form>
+    <p class="clearfix">
+        <button type="submit" name="submit" value="Сохранить" id="send">Сохранить</button>
+    </p>
+    <div class="result hidden">Ваше счастливое число:
+        <p id="results"></p>
+    </div>
 </div>
+
+
 </body>
 </html>

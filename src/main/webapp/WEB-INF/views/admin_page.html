@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>LuckyNumber</title>
+    <link href="/resources/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css"/>
+    <script src="/resources/js/jquery-2.1.0.min.js"></script>
+    <script src="/resources/js/jquery-ui-1.10.4.custom.js"></script>
+    <link href="/resources/css/jquery-ui-1.10.4.custom.css" rel="stylesheet"/>
+</head>
+<style>
+    @import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
+    @import url(http://fonts.googleapis.com/css?family=Russo+One);
+</style>
+<body>
+
+<div class="container">
+    <h1>Страница админа</h1>
+
+    <div class="form-3 reg">
+        <table class="table">
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.fio}">ФИО</td>
+                <td th:text="${user.bdate}">Дата рождения</td>
+                <td th:text="${user.first}">Первое</td>
+                <td th:text="${user.second}">Второе</td>
+                <td th:text="${user.third}">Третье</td>
+                <td th:text="${user.luckyNumber}">Счастливое число</td>
+                <td>
+                    <a type="submit" name="submit" th:href="${'/user/edit/'+user.id}" value="Редактировать">Редактировать</a>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+</body>
+</html>
