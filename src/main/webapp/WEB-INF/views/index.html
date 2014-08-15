@@ -66,7 +66,7 @@
 <div class="container" style="min-width: 1000px">
     <h1>Узнай своё <br/>счастливое число</h1>
 
-    <form action="#" class="form-3 reg" id="form" method="post">
+    <form action="#" class="form-3 reg" id="form" method="get">
 
         <p class="clearfix">
             <label for="fio">Имя: </label>
@@ -92,11 +92,11 @@
             <label for="third">Третье число:</label>
             <input type="number" id="third" name="third"/>
         </p>
-
+        <p class="clearfix">
+            <button type="button" name="submit" value="Сохранить" id="send">Сохранить</button>
+        </p>
     </form>
-    <p class="clearfix">
-        <button type="submit" name="submit" value="Сохранить" id="send">Сохранить</button>
-    </p>
+
     <div class="result hidden">Ваше счастливое число:
         <p id="results"></p>
     </div>
